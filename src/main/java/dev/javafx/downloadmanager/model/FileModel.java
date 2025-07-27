@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class FileModel {
     private SimpleStringProperty name=new SimpleStringProperty();
     private SimpleStringProperty url=new SimpleStringProperty();
-    private SimpleIntegerProperty sno=new SimpleIntegerProperty();
+    private SimpleStringProperty sno=new SimpleStringProperty();
     private SimpleStringProperty status=new SimpleStringProperty();
     private SimpleStringProperty action=new SimpleStringProperty();
     private SimpleStringProperty path=new SimpleStringProperty();
@@ -14,7 +14,7 @@ public class FileModel {
     public FileModel(String name, String url, int sno, String status, String action, String path) {
         this.name.set(name);
         this.url.set(url);
-        this.sno.set(sno);
+        this.sno.set(Integer.toString(sno));
         this.status.set(status);
         this.action.set(action);
         this.path.set(path);
@@ -44,11 +44,11 @@ public class FileModel {
         this.url.set(url);
     }
 
-    public int getSno() {
+    public String getSno() {
         return sno.get();
     }
 
-    public SimpleIntegerProperty snoProperty() {
+    public SimpleStringProperty snoProperty() {
         return sno;
     }
 
@@ -65,7 +65,7 @@ public class FileModel {
     }
 
     public void setSno(int sno) {
-        this.sno.set(sno);
+        this.sno.set(Integer.toString(sno));
     }
 
     public String getStatus() {

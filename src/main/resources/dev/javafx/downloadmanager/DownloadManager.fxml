@@ -51,7 +51,7 @@
          <center>
             <TableView fx:id="tableView" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="S.No." />
+                <TableColumn fx:id="sno" prefWidth="75.0" text="S.No." />
                 <TableColumn prefWidth="75.0" text="File Name" />
                   <TableColumn prefWidth="75.0" text="File URL" />
                   <TableColumn prefWidth="75.0" text="Status" />

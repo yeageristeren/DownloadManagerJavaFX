@@ -4,6 +4,7 @@ import dev.javafx.downloadmanager.config.AppConfig;
 import dev.javafx.downloadmanager.model.FileModel;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,13 +23,20 @@ public class DownloaderThread extends Thread {
         this.file.setStatus("DOWNLOADING");
         this.controller.update(this.file);
         try {
-            Files.copy(new URL(this.file.getUrl()).openStream(), Path.of(this.file.getPath()));
-            this.file.setStatus("DONE");
-        } catch (IOException e) {
-            System.out.println("Downloading error");
-            System.out.println(e.getStackTrace());
-            this.file.setStatus("FAILED");
-        }
+            Path filePath = Path.of(this.file.getPath());
+
+            if (Files.exists(filePath)) {
+                System.out.println("File already exists, skipping download: " + filePath);
+                this.file.setStatus("ALREADY EXISTS");
+            } else {
+                Files.copy(new URL(this.file.getUrl()).openStream(), filePath);
+                this.file.setStatus("DONE");
+
+            }
         this.controller.update(this.file);
-    }
-}
+    } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }}
