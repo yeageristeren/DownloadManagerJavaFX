@@ -8,17 +8,16 @@ public class FileModel {
     private SimpleStringProperty url=new SimpleStringProperty();
     private SimpleStringProperty sno=new SimpleStringProperty();
     private SimpleStringProperty status=new SimpleStringProperty();
-    private SimpleStringProperty action=new SimpleStringProperty();
     private SimpleStringProperty path=new SimpleStringProperty();
+    private SimpleStringProperty percent=new SimpleStringProperty();
 
-    public FileModel(String name, String url, int sno, String status, String action, String path) {
+    public FileModel(String name, String url, int sno, String status, String action, String path,double per) {
         this.name.set(name);
         this.url.set(url);
         this.sno.set(Integer.toString(sno));
         this.status.set(status);
-        this.action.set(action);
         this.path.set(path);
-    }
+        this.percent.set(Double.toString(per));}
 
     public String getName() {
         return name.get();
@@ -26,6 +25,22 @@ public class FileModel {
 
     public SimpleStringProperty nameProperty() {
         return name;
+    }
+
+    public void setSno(String sno) {
+        this.sno.set(sno);
+    }
+
+    public String getPercent() {
+        return percent.get();
+    }
+
+    public SimpleStringProperty percentProperty() {
+        return percent;
+    }
+
+    public void setPercent(String percent) {
+        this.percent.set(percent);
     }
 
     public void setName(String name) {
@@ -80,18 +95,6 @@ public class FileModel {
         this.status.set(status);
     }
 
-    public String getAction() {
-        return action.get();
-    }
-
-    public SimpleStringProperty actionProperty() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action.set(action);
-    }
-
     @Override
     public String toString() {
         return "FileModel{" +
@@ -99,7 +102,6 @@ public class FileModel {
                 ", url=" + url +
                 ", sno=" + sno +
                 ", status=" + status +
-                ", action=" + action +
                 ", path=" + path +
                 '}';
     }

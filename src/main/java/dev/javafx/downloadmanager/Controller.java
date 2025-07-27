@@ -31,7 +31,8 @@ public class Controller implements Initializable {
         String status = "STARTING";
         String action = "Open";
         String path = AppConfig.downloadPath+ File.separator+name;
-        FileModel fileModel = new FileModel(name,url,index,status,action,path);
+        double per = 0.0;
+        FileModel fileModel = new FileModel(name,url,index,status,action,path,per);
         DownloaderThread downloaderThread = new DownloaderThread(this,fileModel);
         tableView.getItems().add(fileModel);
         index++;
@@ -43,6 +44,7 @@ public class Controller implements Initializable {
         System.out.println(file.toString());
         FileModel row = tableView.getItems().get(Integer.parseInt(file.getSno()));
         row.setStatus(file.getStatus());
+        row.setPercent(file.getPercent());
         tableView.refresh();
     }
 
@@ -64,9 +66,9 @@ public class Controller implements Initializable {
         status.setCellValueFactory(e->{
             return e.getValue().statusProperty();
         });
-        TableColumn<FileModel,String> action = (TableColumn<FileModel, String>) tableView.getColumns().get(4);
-        action.setCellValueFactory(e->{
-            return e.getValue().actionProperty();
+        TableColumn<FileModel,String> percent = (TableColumn<FileModel, String>) tableView.getColumns().get(4);
+        percent.setCellValueFactory(e->{
+            return e.getValue().percentProperty();
         });
         System.out.println("index initialised");
     }

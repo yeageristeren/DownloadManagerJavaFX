@@ -55,7 +55,7 @@
                 <TableColumn prefWidth="75.0" text="File Name" />
                   <TableColumn prefWidth="75.0" text="File URL" />
                   <TableColumn prefWidth="75.0" text="Status" />
-                  <TableColumn prefWidth="71.20001220703125" text="Action" />
+                  <TableColumn fx:id="percent" prefWidth="75.0" text="\% Completed" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
